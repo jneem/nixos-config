@@ -7,11 +7,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1662523665,
-        "narHash": "sha256-7YL1ccv7+fyUMqD7W4HOnQldJqjTuFSCsHKKhx+Hh4c=",
+        "lastModified": 1662609282,
+        "narHash": "sha256-0Uft7N4BaZ1R1IrJ/sHbsFfx05Tr61kQXRhGlk2plqY=",
         "owner": "jneem",
         "repo": "curlossal",
-        "rev": "48a834c37a0cf447d2c1609f6d98ab51f5a59ee5",
+        "rev": "92a9b5113f080f404f0e22df00a92e4eece52190",
         "type": "github"
       },
       "original": {
