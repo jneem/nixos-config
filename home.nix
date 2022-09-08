@@ -15,12 +15,16 @@
       MOZ_ENABLE_WAYLAND = 1;
       #XCURSOR_SIZE = 96;
     };
-    #file = {
+    file = {
+      dragonfly = {
+        source = ./dragonfly.jpg;
+        target = "${config.home.homeDirectory}/.local/share/wallpapers/dragonfly.jpg";
+      };
       #cursor = {
         #source = "${config.home.homeDirectory}/.local/share/icons/BigCursor";
         #target = ".icons/default";
       #};
-    #};
+    };
     stateVersion = "22.05";
     packages = with pkgs; [
       curlossal
