@@ -14,7 +14,7 @@
         position = "bottom";
         height = 32;
         modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-right = [ "disk" "memory" "cpu" "pulseaudio" "battery" "backlight" "clock" "tray" "idle_inhibitor" ];
+        modules-right = [ "disk" "memory" "cpu" "network" "pulseaudio" "battery" "backlight" "clock" "tray" "idle_inhibitor" ];
         battery = {
           format =  "{icon} {capacity}%";
           format-good =  "{icon} {capacity}%";
@@ -35,7 +35,7 @@
       	  interval = 60;
         };
         network = {
-          #format = "{bandwidthUpBytes} {bandwidthDownBytes}";
+          format = "{bandwidthUpBytes:>}  {bandwidthDownBytes:>} ";
           interval = 1;
         };
         pulseaudio = {
@@ -141,6 +141,12 @@
         ];
       output = {
         "*" = { bg = "~/.local/share/wallpapers/dragonfly.jpg fill"; };
+        "DP-1" = {
+          position = "2560,0";
+        };
+        "HDMI-A-1" = {
+          position = "0,800";
+        };
       };
     };
     enable = true;

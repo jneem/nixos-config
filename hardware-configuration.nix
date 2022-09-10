@@ -8,29 +8,23 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4ec1493e-9f34-4da5-958e-e7f0d76535fa";
+    { device = "/dev/disk/by-uuid/37bec5a5-226f-41a0-8acf-ebe36fbf4365";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."cryptroot" = {
-    device = "/dev/disk/by-uuid/52c8cd4f-343f-4ada-b310-2d6a462fed66";
-    allowDiscards = true;
-    bypassWorkqueues = true;
-  };
-
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/A3D8-4BBA";
+    { device = "/dev/disk/by-uuid/3D13-2457";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/21e91dcf-51d1-4b37-aa45-a0adcf1f0111"; }
+    [ { device = "/dev/disk/by-uuid/3d13883e-2ccf-46dc-b361-76a0e18ef9a3"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -38,11 +32,9 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp0s13f0u3u2.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
 }

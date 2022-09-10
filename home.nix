@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
-    
   imports = [ ./home-sway.nix ];
 
   home = {
@@ -27,11 +25,12 @@
     };
     stateVersion = "22.05";
     packages = with pkgs; [
-      curlossal
+      #curlossal
       chromium
       darktable
       fractal
       gnome3.adwaita-icon-theme
+      grip
       inkscape
       libsecret
       libreoffice
@@ -41,26 +40,22 @@
       pari
       ripgrep
       slack
+      slurp
       tmux
       xdg-utils
       wl-clipboard
       zathura
     ];
 
-    pointerCursor = {
-      package = pkgs.curlossal;
+    #pointerCursor = {
+      #package = pkgs.curlossal;
         #inputs.curlossal.packages.${pkgs.system}.default;
-      name = "Curlossal";
-      size = 160;
-      gtk.enable = true;
-    };
+      #name = "Curlossal";
+      #size = 160;
+      #gtk.enable = true;
+    #};
   };
     
-  #gtk.cursorTheme = {
-    #name = "BigCursor";
-    #size = 96;
-  #};
-
   programs.home-manager.enable = true;
   
   programs.git = {
@@ -101,7 +96,7 @@
   
   programs.helix = {
     enable = true;
-    #package = inputs.nixpkgs-unstable.helix;
+    package = pkgs.helix;
     settings = {
       theme = "onedark";
       editor.auto-pairs = false;
@@ -139,9 +134,12 @@
   };
     
     
-  xdg.mimeApps.defaultApplications = {
-    "x-scheme-handler/http" = "firefox.desktop";
-    "x-scheme-handler/https" = "firefox.desktop";      
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+    };
   };
     
   xdg.systemDirs.data = let

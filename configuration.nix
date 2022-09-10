@@ -5,12 +5,6 @@
 { config, pkgs, inputs, ... }:
 
 {
-  fileSystems."/home/jneeman/zeus-photos" = {
-    device = "zeus:/photos";
-    fsType = "nfs";
-    options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
-  };
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -30,7 +24,7 @@
     enable = true;
   };
 
-  networking.hostName = "mercury"; # Define your hostname.
+  networking.hostName = "zeus"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -82,7 +76,8 @@
     shell = pkgs.fish;
     extraGroups = [ "docker" "networkmanager" "wheel" "video" "scanner" "lp"];
   };
-  home-manager.users.jneeman = { pkgs, ... }: {
+  home-manager.users.jneeman = { pkgs, ... }:
+  {
     imports = [ ./home.nix ];
   };
   home-manager.useGlobalPkgs = true;

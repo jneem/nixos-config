@@ -92,7 +92,8 @@
 #waybar {
 	background: transparent;
 	color: @light;
-	font-family: Terminus, Siji;
+	/*font-family: Terminus, Siji;*/
+	font-family: monospace;
 	font-size: 10pt;
 	/*font-weight: bold;*/
 }
