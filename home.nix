@@ -28,9 +28,11 @@
       #curlossal
       chromium
       darktable
+      gnome.eog
       fractal
+      gimp
       gnome3.adwaita-icon-theme
-      grip
+      grim
       inkscape
       libsecret
       libreoffice
@@ -47,13 +49,19 @@
       zathura
     ];
 
-    #pointerCursor = {
-      #package = pkgs.curlossal;
-        #inputs.curlossal.packages.${pkgs.system}.default;
-      #name = "Curlossal";
-      #size = 160;
-      #gtk.enable = true;
-    #};
+    pointerCursor = {
+      package = pkgs.curlossal;
+      name = "Curlossal";
+      size = 128;
+      gtk.enable = true;
+    };
+  };
+  
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      cursor-size = 128;
+      cursor-theme = "Curlossal";
+    };
   };
     
   programs.home-manager.enable = true;

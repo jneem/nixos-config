@@ -9,7 +9,7 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
@@ -37,4 +37,17 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
+  
+  hardware.opengl = {
+    extraPackages = with pkgs; [
+      amdvlk
+      rocm-opencl-icd
+      rocm-opencl-runtime
+    ];
+  };
+  
+  # USB autosuspend behaves poorly for at least mouse, keyboard, and bluetooth dongle.
+  services.udev.extraRules = ''
+  ACTION=="add", SUBSYSTEM=="usb", ATTR{power/control}="on"
+  '';
 }

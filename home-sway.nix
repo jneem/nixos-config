@@ -112,7 +112,27 @@
         let modifier = config.wayland.windowManager.sway.config.modifier;
         in pkgs.lib.mkOptionDefault {
           "${modifier}+0" = "workspace number 10";
+          "${modifier}+Ctrl+1" = "workspace number 11";
+          "${modifier}+Ctrl+2" = "workspace number 12";
+          "${modifier}+Ctrl+3" = "workspace number 13";
+          "${modifier}+Ctrl+4" = "workspace number 14";
+          "${modifier}+Ctrl+5" = "workspace number 15";
+          "${modifier}+Ctrl+6" = "workspace number 16";
+          "${modifier}+Ctrl+7" = "workspace number 17";
+          "${modifier}+Ctrl+8" = "workspace number 18";
+          "${modifier}+Ctrl+9" = "workspace number 19";
+          "${modifier}+Ctrl+0" = "workspace number 20";
           "${modifier}+Shift+0" = "move container to workspace number 10";
+          "${modifier}+Ctrl+Shift+1" = "move container to workspace number 11";
+          "${modifier}+Ctrl+Shift+2" = "move container to workspace number 12";
+          "${modifier}+Ctrl+Shift+3" = "move container to workspace number 13";
+          "${modifier}+Ctrl+Shift+4" = "move container to workspace number 14";
+          "${modifier}+Ctrl+Shift+5" = "move container to workspace number 15";
+          "${modifier}+Ctrl+Shift+6" = "move container to workspace number 16";
+          "${modifier}+Ctrl+Shift+7" = "move container to workspace number 17";
+          "${modifier}+Ctrl+Shift+8" = "move container to workspace number 18";
+          "${modifier}+Ctrl+Shift+9" = "move container to workspace number 19";
+          "${modifier}+Ctrl+Shift+0" = "move container to workspace number 20";
           "${modifier}+x" = "exec ${pkgs.firefox-wayland}/bin/firefox";
           "XF86MonBrightnessUp" = ''exec "${pkgs.brightnessctl}/bin/brightnessctl set +5%"'';
           "XF86MonBrightnessDown" = ''exec "${pkgs.brightnessctl}/bin/brightnessctl set 5%-"'';
@@ -120,12 +140,37 @@
           "XF86AudioLowerVolume" = ''exec "${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%"'';
           "XF86AudioMute" = ''exec "${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle"'';
         };
+      workspaceOutputAssign = [
+        { workspace = "1"; output = "DP-1"; }
+        { workspace = "2"; output = "DP-1"; }
+        { workspace = "3"; output = "DP-1"; }
+        { workspace = "4"; output = "DP-1"; }
+        { workspace = "5"; output = "DP-1"; }
+        { workspace = "6"; output = "DP-1"; }
+        { workspace = "7"; output = "DP-1"; }
+        { workspace = "8"; output = "DP-1"; }
+        { workspace = "9"; output = "DP-1"; }
+        { workspace = "10"; output = "DP-1"; }
+        { workspace = "11"; output = "HDMI-A-1"; }
+        { workspace = "12"; output = "HDMI-A-1"; }
+        { workspace = "13"; output = "HDMI-A-1"; }
+        { workspace = "14"; output = "HDMI-A-1"; }
+        { workspace = "15"; output = "HDMI-A-1"; }
+        { workspace = "16"; output = "HDMI-A-1"; }
+        { workspace = "17"; output = "HDMI-A-1"; }
+        { workspace = "18"; output = "HDMI-A-1"; }
+        { workspace = "19"; output = "HDMI-A-1"; }
+        { workspace = "20"; output = "HDMI-A-1"; }
+      ];
+      window.commands = [
+        { criteria = { class = "Slack"; }; command = "move container to workspace 11"; }
+      ];
       menu = "${pkgs.bemenu}/bin/bemenu-run | ${pkgs.findutils}/bin/xargs swaymsg exec --";
       terminal = "${pkgs.alacritty}/bin/alacritty";
       seat = {
         seat0 = {
           hide_cursor = "when-typing enable";
-          xcursor_theme = "Curlossal 160";
+          xcursor_theme = "Curlossal 128";
         };
       };
       startup = let

@@ -37,6 +37,7 @@
   # Enable flakes
   nix = {
     package = pkgs.nixFlakes;
+    registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''
       experimental-features = nix-command flakes ca-derivations
     '';
@@ -74,7 +75,7 @@
     isNormalUser = true;
     description = "Joe Neeman";
     shell = pkgs.fish;
-    extraGroups = [ "docker" "networkmanager" "wheel" "video" "scanner" "lp"];
+    extraGroups = [ "docker" "networkmanager" "wheel" "video" "scanner" "lp" "libvirtd" ];
   };
   home-manager.users.jneeman = { pkgs, ... }:
   {
@@ -90,6 +91,7 @@
     clang
     entr
     fd
+    ffmpeg-full
     file
     firefox
     git
@@ -104,6 +106,7 @@
     helix
     htop
     httpie
+    libfaketime
     pavucontrol
     # Is there a way to specify this "near" podman?
     podman-compose
@@ -114,6 +117,7 @@
     texlive.combined.scheme-full
     tmate
     vim
+    virt-manager
     winePackages.staging
     wget
     xorg.xauth
@@ -130,6 +134,7 @@
   #   enableSSHSupport = true;
   # };
 
+  programs.dconf.enable = true;
   programs.fish.enable = true;
     
   fonts.fonts = with pkgs; [
@@ -176,7 +181,7 @@
   nix.settings.substituters = [
       "https://cache.iog.io"
     ];
-
+    
   security.sudo = {
     enable = true;
     execWheelOnly = true;
@@ -193,16 +198,11 @@
     #dockerCompat = true;
   };
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
   
   hardware.opengl = {
       enable = true;
+      driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        intel-compute-runtime
-        intel-media-driver
-        vaapiVdpau
-        libvdpau-va-gl
-        libva
-      ];
   };
 }

@@ -6,21 +6,19 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    #curlossal.url = "github:jneem/curlossal";
+    curlossal.url = "github:jneem/curlossal";
   };
 
   outputs =
-    { self, home-manager, nixos-hardware, ... }@inputs:
+    { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
     let
-      #nixpkgs = inputs.nixpkgs-unstable;
-      nixpkgs = inputs.nixpkgs;
       system = "x86_64-linux";
       unstable = import inputs.nixpkgs-unstable {
         localSystem = { inherit system; };
       };
       overlay = self: super: {
         helix = unstable.helix;
-        #curlossal = inputs.curlossal.packages.${system}.default;
+        curlossal = inputs.curlossal.packages.${system}.default;
       };
 
       pkgs = import inputs.nixpkgs {
@@ -38,9 +36,8 @@
       modules = [
         ./configuration.nix
         "${nixpkgs}/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix"
-        ./hardware-configuration.nix
+        ./zeus/hardware-configuration.nix
         ./sway.nix
-        #(home-manager + "/nixos")
         home-manager.nixosModules.home-manager
         { nix.nixPath = ["nixpkgs=${nixpkgs}"]; }  # needed for nix-shell -p <sth> to work
       ];
