@@ -128,6 +128,11 @@
     ];
   };
   
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+  
   programs.starship = {
     enable = true;
   };

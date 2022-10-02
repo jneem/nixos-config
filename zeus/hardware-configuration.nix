@@ -48,6 +48,8 @@
   
   # USB autosuspend behaves poorly for at least mouse, keyboard, and bluetooth dongle.
   services.udev.extraRules = ''
-  ACTION=="add", SUBSYSTEM=="usb", ATTR{power/control}="on"
+  SUBSYSTEM=="usb", ATTR{product}=="CST Laser Trackball", ATTR{power/control}="on"
+  SUBSYSTEM=="usb", ATTR{product}=="USB Keyboard", ATTR{power/control}="on"
+  SUBSYSTEM=="usb", ATTR{product}=="CSR8510 A10", ATTR{power/control}="on"
   '';
 }

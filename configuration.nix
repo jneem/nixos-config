@@ -76,6 +76,9 @@
     description = "Joe Neeman";
     shell = pkgs.fish;
     extraGroups = [ "docker" "networkmanager" "wheel" "video" "scanner" "lp" "libvirtd" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFISxQwDN1H8cA9DDRUTQb9YgsY2AuyvjkXDDOoJLeU3 jneeman@nixos"
+    ];
   };
   home-manager.users.jneeman = { pkgs, ... }:
   {
@@ -107,6 +110,7 @@
     htop
     httpie
     libfaketime
+    p7zip
     pavucontrol
     # Is there a way to specify this "near" podman?
     podman-compose
@@ -157,6 +161,10 @@
 
   # List services that you want to enable:
 
+  services.openssh = {
+    enable = true;
+    passwordAuthentication = false;
+  };
   services.rpcbind.enable = true; # needed for NFS
 
   # Open ports in the firewall.
