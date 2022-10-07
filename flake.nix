@@ -35,6 +35,7 @@
       inherit system;
       modules = [
         ./configuration.nix
+        ./boot/grub.nix
         "${nixpkgs}/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix"
         ./zeus/hardware-configuration.nix
         ./sway.nix

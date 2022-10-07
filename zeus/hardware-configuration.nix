@@ -46,6 +46,10 @@
     ];
   };
   
+  environment.variables = {
+    AMD_VULKAN_ICD = lib.mkDefault "RADV";
+  };
+  
   # USB autosuspend behaves poorly for at least mouse, keyboard, and bluetooth dongle.
   services.udev.extraRules = ''
   SUBSYSTEM=="usb", ATTR{product}=="CST Laser Trackball", ATTR{power/control}="on"

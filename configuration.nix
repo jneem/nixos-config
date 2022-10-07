@@ -5,11 +5,6 @@
 { config, pkgs, inputs, ... }:
 
 {
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-    
   systemd.coredump = {
     enable = true;
     # Big core dumps (especially from chromium) make things unresponsive.
