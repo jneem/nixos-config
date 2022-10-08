@@ -42,8 +42,6 @@
   programs.dconf.enable = true;
   programs.fish.enable = true;
 
-  system.stateVersion = "22.05"; # Did you read the comment?
-
   nix.settings.auto-optimise-store = true;
 
   security.sudo = {
