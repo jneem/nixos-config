@@ -12,37 +12,29 @@
   outputs =
     { self, nixpkgs, home-manager, nixos-hardware, ... }@inputs:
     let
-      system = "x86_64-linux";
-      unstable = import inputs.nixpkgs-unstable {
-        localSystem = { inherit system; };
-      };
-      overlay = self: super: {
-        helix = unstable.helix;
-        curlossal = inputs.curlossal.packages.${system}.default;
-      };
-
-      pkgs = import inputs.nixpkgs {
-        localSystem = { inherit system; };
-        config = {
-          allowUnfree = true;
-          firefox.enableGoogleTalkPlugin = true;
-        };
-        overlays = [ overlay ];
-      };
+      lib = import ./lib { inherit inputs nixpkgs; };
     in
     {
-    nixosConfigurations.zeus = nixpkgs.lib.nixosSystem {
-      inherit system;
-      modules = [
-        ./configuration.nix
-        ./boot/grub.nix
-        "${nixpkgs}/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix"
-        ./zeus/hardware-configuration.nix
-        ./sway.nix
-        home-manager.nixosModules.home-manager
-        { nix.nixPath = ["nixpkgs=${nixpkgs}"]; }  # needed for nix-shell -p <sth> to work
-      ];
-      specialArgs = { inherit inputs pkgs; };
+      nixosVersion = "22.05";
+      nixosRoles = lib.findModules ./roles;
+      nixosUsers = lib.findModules ./users;
+      nixosModules = lib.findModules ./modules;
+      nixosConfigurations = import ./configurations {
+        inherit inputs lib;
+      };
+
+      #nixosConfigurations.zeus = nixpkgs.lib.nixosSystem {
+        #inherit system;
+        #modules = [
+          #./configuration.nix
+          #./boot/grub.nix
+          #"${nixpkgs}/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix"
+          #./zeus/hardware-configuration.nix
+          #./sway.nix
+          #home-manager.nixosModules.home-manager
+          #{ nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; } # needed for nix-shell -p <sth> to work
+        #];
+        #specialArgs = { inherit inputs pkgs; };
+      #};
     };
-  };
 }

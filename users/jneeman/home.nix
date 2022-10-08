@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   imports = [ ./home-sway.nix ];
 
-  home = {
+  home = rec {
     username = "jneeman";
     homeDirectory = "/home/jneeman";
     sessionVariables = {
@@ -16,7 +16,7 @@
     file = {
       dragonfly = {
         source = ./dragonfly.jpg;
-        target = "${config.home.homeDirectory}/.local/share/wallpapers/dragonfly.jpg";
+        target = "${homeDirectory}/.local/share/wallpapers/dragonfly.jpg";
       };
       #cursor = {
         #source = "${config.home.homeDirectory}/.local/share/icons/BigCursor";
@@ -104,7 +104,7 @@
   
   programs.helix = {
     enable = true;
-    package = pkgs.helix;
+    package = pkgs-unstable.helix;
     settings = {
       theme = "onedark";
       editor.auto-pairs = false;
