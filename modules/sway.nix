@@ -24,4 +24,11 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     gtkUsePortal = true;
   };
+
+  environment.variables = {
+    NIXOS_OZONE_WL = "1";
+    SDL_VIDEODRIVER = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+  };
+
 }

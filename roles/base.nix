@@ -13,6 +13,7 @@
 
   # Enable flakes
   nix = {
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ]; # needed for nix-shell -p <sth> to work
     package = pkgs.nixFlakes;
     registry.nixpkgs.flake = inputs.nixpkgs;
     extraOptions = ''

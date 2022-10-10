@@ -8,9 +8,6 @@
     homeDirectory = "/home/jneeman";
     sessionVariables = {
       EDITOR = "hx";
-      NIXOS_OZONE_WL = 1;
-      SDL_VIDEODRIVER = "wayland";
-      MOZ_ENABLE_WAYLAND = 1;
       #XCURSOR_SIZE = 96;
     };
     file = {

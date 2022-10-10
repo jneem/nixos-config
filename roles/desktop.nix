@@ -2,7 +2,7 @@
 
 {
   hardware.bluetooth.enable = true;
-  
+
   imports = [
     "${inputs.nixpkgs}/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix"
     inputs.self.nixosModules.sway
@@ -30,7 +30,7 @@
   hardware.pulseaudio.enable = false;
 
   services.blueman.enable = true;
-  
+
   # Allows for storing secrets in gnome-keyring.
   services.dbus.packages = [ pkgs.gcr ];
 
@@ -52,8 +52,20 @@
     xterm
     zoom-us
   ];
-    
+
   programs.dconf.enable = true;
+
+  fonts.fonts = with pkgs; [
+    dejavu_fonts
+    fira-code
+    fira-code-symbols
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    noto-fonts-extra
+    font-awesome
+  ];
+
   fonts.fontconfig = {
     defaultFonts = {
       monospace = [ "Fira Code" ];
@@ -62,7 +74,7 @@
       serif = [ "DejaVu Serif" ];
     };
   };
-    
+
   # TODO: split virtualisation into a separate module
   virtualisation.podman = {
     enable = true;
@@ -70,10 +82,10 @@
   };
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
-  
+
   hardware.opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
   };
 }
