@@ -1,8 +1,6 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, ... }:
 
 {
-  imports = [ ./home-sway.nix ];
-
   home = rec {
     username = "jneeman";
     homeDirectory = "/home/jneeman";
@@ -50,7 +48,7 @@
 
   programs.helix = {
     enable = true;
-    package = pkgs-unstable.helix;
+    package = pkgs.unstable.helix;
     settings = {
       theme = "onedark";
       editor.auto-pairs = false;

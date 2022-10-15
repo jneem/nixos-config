@@ -12,13 +12,17 @@
       curlossal-overlay = next: prev: {
         curlossal = inputs.curlossal.packages.${system}.default;
       };
+      
+      unstable-overlay = next: prev: {
+        unstable = pkgs-unstable;
+      };
 
       pkgs = import inputs.nixpkgs {
         localSystem = { inherit system; };
         config = {
           allowUnfree = true;
         };
-        overlays = [ curlossal-overlay ];
+        overlays = [ curlossal-overlay unstable-overlay ];
       };
     in
     lib.nixosSystem {

@@ -1,4 +1,4 @@
-{ inputs, pkgs, pkgs-unstable, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -7,6 +7,6 @@
     inputs.self.nixosRoles.base
     inputs.self.nixosRoles.desktop
     inputs.self.nixosRoles.ssh-server
-    inputs.self.nixosUsers.jneeman
+    inputs.self.nixosUsers.jneeman.sway
   ];
 }
