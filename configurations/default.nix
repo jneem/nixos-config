@@ -9,16 +9,11 @@
         localSystem = { inherit system; };
       };
       
-      curlossal-overlay = next: prev: {
-        curlossal = inputs.curlossal.packages.${system}.default;
-      };
-
       pkgs = import inputs.nixpkgs {
         localSystem = { inherit system; };
         config = {
           allowUnfree = true;
         };
-        overlays = [ curlossal-overlay ];
       };
     in
     lib.nixosSystem {
