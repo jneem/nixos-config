@@ -1,98 +1,146 @@
 { config, pkgs, ... }:
 
 {
+  home = {
+    file = {
+      dragonfly = {
+        source = ./dragonfly.jpg;
+        target = "/home/jneeman/.local/share/wallpapers/dragonfly.jpg";
+      };
+    };
+
+    packages = with pkgs; [
+      chromium
+      darktable
+      gnome.eog
+      gimp
+      gnome3.adwaita-icon-theme
+      grim
+      inkscape
+      libreoffice
+      lutris
+      mpv
+      networkmanagerapplet
+      slack
+      slurp
+      xdg-utils
+      wl-clipboard
+      zathura
+    ];
+
+    pointerCursor = {
+      package = pkgs.curlossal;
+      name = "Curlossal";
+      size = 128;
+      gtk.enable = true;
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      cursor-size = 128;
+      cursor-theme = "Curlossal";
+    };
+  };
+
+  programs.alacritty = {
+    enable = true;
+  };
+
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-wayland;
   };
-  
+
   programs.waybar = {
     enable = true;
     style = ./waybar-style.css;
     settings = [{
-        layer = "top";
-        position = "bottom";
-        height = 32;
-        modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-right = [ "disk" "memory" "cpu" "network" "pulseaudio" "battery" "backlight" "clock" "tray" "idle_inhibitor" ];
-        battery = {
-          format =  "{icon} {capacity}%";
-          format-good =  "{icon} {capacity}%";
-          format-full =  " {capacity}%";
-          format-icons = ["" "" "" "" ""];
-          interval = 30;
+      layer = "top";
+      position = "bottom";
+      height = 32;
+      modules-left = [ "sway/workspaces" "sway/mode" ];
+      modules-right = [ "disk" "memory" "cpu" "network" "pulseaudio" "battery" "backlight" "clock" "tray" "idle_inhibitor" ];
+      battery = {
+        format = "{icon} {capacity}%";
+        format-good = "{icon} {capacity}%";
+        format-full = " {capacity}%";
+        format-icons = [ "" "" "" "" "" ];
+        interval = 30;
+      };
+      idle_inhibitor = {
+        format = "{icon}";
+        format-icons = {
+          "activated" = "";
+          "deactivated" = "";
         };
-        idle_inhibitor = {
-          format = "{icon}";
-          format-icons = {
-            "activated" = "";
-            "deactivated" = "";
-          };
-        };
-        backlight = {
-        	device = "intel_backlight";
-    	    format = " {percent}%";
-      	  interval = 60;
-        };
-        network = {
-          format = "{bandwidthUpBytes:>}  {bandwidthDownBytes:>} ";
-          interval = 1;
-        };
-        pulseaudio = {
-          format = "{icon} {volume}%";
-          format-bluetooth = "{icon} {volume}%";
-          format-muted = "()";
-          interval = 60;
+      };
+      backlight = {
+        device = "intel_backlight";
+        format = " {percent}%";
+        interval = 60;
+      };
+      network = {
+        format = "{bandwidthUpBytes:>}  {bandwidthDownBytes:>} ";
+        interval = 1;
+      };
+      pulseaudio = {
+        format = "{icon} {volume}%";
+        format-bluetooth = "{icon} {volume}%";
+        format-muted = "()";
+        interval = 60;
 
-          format-icons = {
-            default = [""];
-          };
+        format-icons = {
+          default = [ "" ];
         };
-      
-        clock = {
-          interval = 10;
-          format = "{:%H:%M %Y-%m-%d (%a)}";
-        };
-    
-        cpu = {
-          interval = 1;
-          format = "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}";
-          format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
-        };
-      
-        disk = {
-          interval = 60;
-          format = " {free}";
-        };
-      
-        memory = {
-          format = " {percentage}%";
-        };
+      };
+
+      clock = {
+        interval = 10;
+        format = "{:%H:%M %Y-%m-%d (%a)}";
+      };
+
+      cpu = {
+        interval = 1;
+        format = "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}";
+        format-icons = [ "▁" "▂" "▃" "▄" "▅" "▆" "▇" "█" ];
+      };
+
+      disk = {
+        interval = 60;
+        format = " {free}";
+      };
+
+      memory = {
+        format = " {percentage}%";
+      };
     }];
   };
-  services.swayidle = let
+  services.swayidle =
+    let
       swaylock = "${pkgs.swaylock.outPath}/bin/swaylock";
       swaymsg = "${pkgs.sway.outPath}/bin/swaymsg";
-    in {
-    enable = true;
-    events = [
-      {
-        event = "before-sleep";
-        command = "${swaylock} -f -c 000000";
-      }
-    ];
-    timeouts = [
-      {
-        timeout = 310;
-        command = "${swaylock} -f -c 000000";
-      }
-      {
-        timeout = 300;
-        command = "${swaymsg} 'output * dpms off'";
-        resumeCommand = "${swaymsg} 'output * dpms on'";
-      }
-    ];
-  };
+    in
+    {
+      enable = true;
+      events = [
+        {
+          event = "before-sleep";
+          command = "${swaylock} -f -c 000000";
+        }
+      ];
+      timeouts = [
+        {
+          timeout = 310;
+          command = "${swaylock} -f -c 000000";
+        }
+        {
+          timeout = 300;
+          command = "${swaymsg} 'output * dpms off'";
+          resumeCommand = "${swaymsg} 'output * dpms on'";
+        }
+      ];
+    };
   programs.mako.enable = true;
   wayland.windowManager.sway = {
     config = {
@@ -110,7 +158,8 @@
       };
       keybindings =
         let modifier = config.wayland.windowManager.sway.config.modifier;
-        in pkgs.lib.mkOptionDefault {
+        in
+        pkgs.lib.mkOptionDefault {
           "${modifier}+0" = "workspace number 10";
           "${modifier}+Ctrl+1" = "workspace number 11";
           "${modifier}+Ctrl+2" = "workspace number 12";
@@ -173,12 +222,8 @@
           xcursor_theme = "Curlossal 128";
         };
       };
-      startup = let
-        gsettings = "${pkgs.glib}/bin/gsettings";
-      in
+      startup =
         [
-          { command = "${gsettings} set org.gnome.desktop.interface cursor-theme BigCursor"; }
-          { command = "${gsettings} set org.gnome.desktop.interface cursor-size 96"; }
           { command = "systemctl --user restart gnome-keyring.service"; always = true; }
           { command = "systemctl --user restart swayidle.service"; always = true; }
           { command = "${pkgs.blueman}/bin/blueman-applet"; }
@@ -197,5 +242,20 @@
     enable = true;
     wrapperFeatures.gtk = true;
   };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+    };
+  };
+
+  xdg.systemDirs.data =
+    let
+      schema = pkgs.gsettings-desktop-schemas;
+      datadir = "${schema}/share/gsettings-schemas/${schema.name}";
+    in
+    [ "${schema}/share/gsettings-schemas/${schema.name}" ];
 
 }
