@@ -5,4 +5,5 @@
   boot.supportedFilesystems = [ "zfs" ];
   services.nfs.server.enable = true;
   services.zfs.autoScrub.enable = true;
+  networking.firewall.allowedTCPPorts = [ 2049 ];
 }
