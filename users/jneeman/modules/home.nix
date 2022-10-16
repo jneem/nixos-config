@@ -22,11 +22,6 @@
     lfs.enable = true;
     userName = "Joe Neeman";
     userEmail = "joeneeman@gmail.com";
-    extraConfig = {
-      credential.helper = "${
-        pkgs.git.override { withLibsecret = true; }
-      }/bin/git-credential-libsecret";
-    };
   };
 
   programs.direnv = {
@@ -79,11 +74,6 @@
 
   programs.starship = {
     enable = true;
-  };
-
-  services.gnome-keyring = {
-    enable = true;
-    components = [ "secrets" "ssh" ];
   };
 
 }
