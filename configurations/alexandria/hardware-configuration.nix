@@ -14,6 +14,8 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
   boot.zfs.extraPools = [ "storage" ];
+  
+  boot.blacklistedKernelModules = [ "bluetooth" ];
 
   fileSystems."/" =
     {
@@ -24,4 +26,8 @@
   swapDevices = [ ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
+  
+  networking.localCommands = ''
+    ${pkgs.ethtool}/bin/ethtool -K eth0 rx off tx off
+  '';
 }

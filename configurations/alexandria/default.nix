@@ -11,4 +11,11 @@
   ];
 
   networking.hostId = "a0136412";
+
+  boot.kernelParams = [ "panic=1" "boot.panic_on_fail" ];
+  systemd.enableEmergencyMode = false;
+  systemd.services."serial-getty@ttyS0".enable = pkgs.lib.mkDefault false;
+  systemd.services."serial-getty@hvc0".enable = false;
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@".enable = false;
 }
