@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
@@ -13,19 +14,24 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/37bec5a5-226f-41a0-8acf-ebe36fbf4365";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/37bec5a5-226f-41a0-8acf-ebe36fbf4365";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/3D13-2457";
-      fsType = "vfat";
-    };
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/3D13-2457";
+    fsType = "vfat";
+  };
+
+  fileSystems."/mnt/alexandria" = {
+    device = "alexandria:/mnt/storage";
+    fsType = "nfs";
+    options = [ "x-systemd.automount" "noauto" "noatime" "soft" ];
+  };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/3d13883e-2ccf-46dc-b361-76a0e18ef9a3"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/3d13883e-2ccf-46dc-b361-76a0e18ef9a3"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -37,7 +43,7 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # high-resolution display
   hardware.video.hidpi.enable = lib.mkDefault true;
-  
+
   hardware.opengl = {
     extraPackages = with pkgs; [
       amdvlk
@@ -45,15 +51,15 @@
       rocm-opencl-runtime
     ];
   };
-  
+
   environment.variables = {
     AMD_VULKAN_ICD = lib.mkDefault "RADV";
   };
-  
+
   # USB autosuspend behaves poorly for at least mouse, keyboard, and bluetooth dongle.
   services.udev.extraRules = ''
-  SUBSYSTEM=="usb", ATTR{product}=="CST Laser Trackball", ATTR{power/control}="on"
-  SUBSYSTEM=="usb", ATTR{product}=="USB Keyboard", ATTR{power/control}="on"
-  SUBSYSTEM=="usb", ATTR{product}=="CSR8510 A10", ATTR{power/control}="on"
+    SUBSYSTEM=="usb", ATTR{product}=="CST Laser Trackball", ATTR{power/control}="on"
+    SUBSYSTEM=="usb", ATTR{product}=="USB Keyboard", ATTR{power/control}="on"
+    SUBSYSTEM=="usb", ATTR{product}=="CSR8510 A10", ATTR{power/control}="on"
   '';
 }
