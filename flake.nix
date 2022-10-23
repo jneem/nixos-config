@@ -22,19 +22,5 @@
       nixosConfigurations = import ./configurations {
         inherit inputs lib;
       };
-
-      #nixosConfigurations.zeus = nixpkgs.lib.nixosSystem {
-        #inherit system;
-        #modules = [
-          #./configuration.nix
-          #./boot/grub.nix
-          #"${nixpkgs}/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix"
-          #./zeus/hardware-configuration.nix
-          #./sway.nix
-          #home-manager.nixosModules.home-manager
-          #{ nix.nixPath = [ "nixpkgs=${nixpkgs}" ]; } # needed for nix-shell -p <sth> to work
-        #];
-        #specialArgs = { inherit inputs pkgs; };
-      #};
     };
 }
