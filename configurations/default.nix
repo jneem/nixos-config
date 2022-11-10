@@ -8,11 +8,11 @@
       pkgs-unstable = import inputs.nixpkgs-unstable {
         localSystem = { inherit system; };
       };
-      
+
       curlossal-overlay = next: prev: {
         curlossal = inputs.curlossal.packages.${system}.default;
       };
-      
+
       unstable-overlay = next: prev: {
         unstable = pkgs-unstable;
       };
