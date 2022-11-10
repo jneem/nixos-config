@@ -62,4 +62,8 @@
     SUBSYSTEM=="usb", ATTR{product}=="USB Keyboard", ATTR{power/control}="on"
     SUBSYSTEM=="usb", ATTR{product}=="CSR8510 A10", ATTR{power/control}="on"
   '';
+
+  home-manager.users.jneeman.wayland.windowManager.sway = {
+    config.input."1386:183:Wacom_Intuos3_4x6_Pen".map_to_output = "DP-1";
+  };
 }

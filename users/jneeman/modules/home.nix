@@ -46,11 +46,15 @@
     package = pkgs.unstable.helix;
     settings = {
       theme = "onedark";
-      editor.auto-pairs = false;
-      editor.cursor-shape = {
-        insert = "bar";
-        normal = "block";
-        select = "underline";
+      editor =  {
+        auto-pairs = false;
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
+        file-picker.hidden = false;
+        search.smart-case = false;
       };
     };
     languages = [

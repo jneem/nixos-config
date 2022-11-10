@@ -27,6 +27,8 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  services.printing.enable = true;
+  services.printing.drivers = [ pkgs.brlaser ];
   hardware.pulseaudio.enable = false;
 
   services.blueman.enable = true;
