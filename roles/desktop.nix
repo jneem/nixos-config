@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, pkgs-unstable, inputs, ... }:
 
 {
   hardware.bluetooth.enable = true;
@@ -28,8 +28,10 @@
     pulse.enable = true;
   };
   services.printing.enable = true;
-  services.printing.drivers = [ pkgs.brlaser ];
+  services.printing.drivers = [ pkgs.brlaser pkgs.epson-escpr2 ];
   hardware.pulseaudio.enable = false;
+  
+  services.hardware.bolt.enable = true;
 
   services.blueman.enable = true;
 
@@ -52,7 +54,7 @@
     virt-manager
     xorg.xauth
     xterm
-    zoom-us
+    pkgs.unstable.zoom-us
   ];
 
   programs.dconf.enable = true;

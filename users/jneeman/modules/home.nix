@@ -78,6 +78,12 @@
 
   programs.starship = {
     enable = true;
+    
+    settings = {
+      gcloud.disabled = true;
+      package.disabled = true;
+      nix_shell.format = "via [❄️ $name]($style) ";
+    };
   };
 
 }

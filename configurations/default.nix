@@ -7,6 +7,9 @@
       system = lib.pipe (path + "/system") [ lib.readFile (lib.strings.splitString "\n") builtins.head ];
       pkgs-unstable = import inputs.nixpkgs-unstable {
         localSystem = { inherit system; };
+        config = {
+          allowUnfree = true;
+        };
       };
 
       curlossal-overlay = next: prev: {
