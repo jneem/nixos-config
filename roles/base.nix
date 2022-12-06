@@ -32,10 +32,10 @@
     git
     helix
     htop
-    httpie
     libfaketime
     p7zip
     rnix-lsp
+    xh
     vim
     wget
   ];
