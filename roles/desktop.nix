@@ -33,6 +33,7 @@
   
   services.hardware.bolt.enable = true;
 
+  services.avahi.enable = true;
   services.blueman.enable = true;
 
   # Allows for storing secrets in gnome-keyring.
