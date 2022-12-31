@@ -29,6 +29,12 @@
       fsType = "vfat";
     };
 
+  fileSystems."/mnt/alexandria" = {
+    device = "alexandria:/mnt/storage";
+    fsType = "nfs";
+    options = [ "x-systemd.automount" "noauto" "noatime" "soft" ];
+  };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/21e91dcf-51d1-4b37-aa45-a0adcf1f0111"; }
     ];
