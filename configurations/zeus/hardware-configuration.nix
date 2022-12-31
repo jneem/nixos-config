@@ -14,6 +14,9 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  # Try a latest kernel, to hopefully resolve video card issues.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/37bec5a5-226f-41a0-8acf-ebe36fbf4365";
     fsType = "ext4";
@@ -62,6 +65,9 @@
     SUBSYSTEM=="usb", ATTR{product}=="USB Keyboard", ATTR{power/control}="on"
     SUBSYSTEM=="usb", ATTR{product}=="CSR8510 A10", ATTR{power/control}="on"
     ACTION=="add", SUBSYSTEM=="video4linux", DRIVERS=="uvcvideo", RUN+="${pkgs.v4l-utils}/bin/v4l2-ctl -d $devnode --set-fmt-video=width=4096,height=2160,pixelformat=MJPG"
+
+    # User access for STLink probe
+    ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", TAG+="uaccess"
   '';
 
   home-manager.users.jneeman.wayland.windowManager.sway = {

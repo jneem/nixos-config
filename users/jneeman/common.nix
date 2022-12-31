@@ -8,7 +8,7 @@
       isNormalUser = true;
       description = "Joe Neeman";
       shell = pkgs.fish;
-      extraGroups = [ "docker" "networkmanager" "wheel" "video" "scanner" "lp" "libvirtd" ];
+      extraGroups = [ "docker" "networkmanager" "wheel" "video" "scanner" "lp" "libvirtd" "dialout" ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFM3vjKsTf7p3v5mPOuV3xWXTPGYcfCnZdmf9OgP1QVq jneeman@alexandria"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFISxQwDN1H8cA9DDRUTQb9YgsY2AuyvjkXDDOoJLeU3 jneeman@mercury"
