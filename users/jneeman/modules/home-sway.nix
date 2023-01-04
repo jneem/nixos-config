@@ -200,17 +200,19 @@
           "XF86AudioLowerVolume" = ''exec "${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%"'';
           "XF86AudioMute" = ''exec "${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle"'';
         };
+      # TODO: This part of the config is specific to zeus's multi-monitor config. Figure out
+      # a better way to separate it.
       workspaceOutputAssign = [
-        { workspace = "1"; output = "DP-1"; }
-        { workspace = "2"; output = "DP-1"; }
-        { workspace = "3"; output = "DP-1"; }
-        { workspace = "4"; output = "DP-1"; }
-        { workspace = "5"; output = "DP-1"; }
-        { workspace = "6"; output = "DP-1"; }
-        { workspace = "7"; output = "DP-1"; }
-        { workspace = "8"; output = "DP-1"; }
-        { workspace = "9"; output = "DP-1"; }
-        { workspace = "10"; output = "DP-1"; }
+        { workspace = "1"; output = "DP-3"; }
+        { workspace = "2"; output = "DP-3"; }
+        { workspace = "3"; output = "DP-3"; }
+        { workspace = "4"; output = "DP-3"; }
+        { workspace = "5"; output = "DP-3"; }
+        { workspace = "6"; output = "DP-3"; }
+        { workspace = "7"; output = "DP-3"; }
+        { workspace = "8"; output = "DP-3"; }
+        { workspace = "9"; output = "DP-3"; }
+        { workspace = "10"; output = "DP-3"; }
         { workspace = "11"; output = "HDMI-A-1"; }
         { workspace = "12"; output = "HDMI-A-1"; }
         { workspace = "13"; output = "HDMI-A-1"; }
@@ -242,11 +244,11 @@
         ];
       output = {
         "*" = { bg = "~/.local/share/wallpapers/dragonfly.jpg fill"; };
-        "DP-1" = {
+        "DP-3" = {
           position = "2560,0";
         };
         "HDMI-A-1" = {
-          position = "0,800";
+          position = "0,720";
         };
       };
     };

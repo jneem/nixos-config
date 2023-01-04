@@ -68,6 +68,6 @@
   '';
 
   home-manager.users.jneeman.wayland.windowManager.sway = {
-    config.input."1386:183:Wacom_Intuos3_4x6_Pen".map_to_output = "DP-1";
+    config.input."1386:183:Wacom_Intuos3_4x6_Pen".map_to_output = "DP-3";
   };
 }
