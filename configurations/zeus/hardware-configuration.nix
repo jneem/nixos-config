@@ -65,9 +65,6 @@
     SUBSYSTEM=="usb", ATTR{product}=="USB Keyboard", ATTR{power/control}="on"
     SUBSYSTEM=="usb", ATTR{product}=="CSR8510 A10", ATTR{power/control}="on"
     ACTION=="add", SUBSYSTEM=="video4linux", DRIVERS=="uvcvideo", RUN+="${pkgs.v4l-utils}/bin/v4l2-ctl -d $devnode --set-fmt-video=width=4096,height=2160,pixelformat=MJPG"
-
-    # User access for STLink probe
-    ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", TAG+="uaccess"
   '';
 
   home-manager.users.jneeman.wayland.windowManager.sway = {

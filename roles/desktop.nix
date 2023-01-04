@@ -80,6 +80,11 @@
     };
   };
 
+    # User access for STLink probe
+  services.udev.extraRules = ''
+    ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", TAG+="uaccess"
+  '';
+
   # TODO: split virtualisation into a separate module
   virtualisation.podman = {
     enable = true;
