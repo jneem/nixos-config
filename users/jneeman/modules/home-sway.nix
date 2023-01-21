@@ -245,10 +245,11 @@
       output = {
         "*" = { bg = "~/.local/share/wallpapers/dragonfly.jpg fill"; };
         "DP-3" = {
-          position = "2560,0";
+          position = "1440,0";
         };
         "HDMI-A-1" = {
-          position = "0,720";
+          position = "0,0";
+          transform = "90";
         };
       };
     };

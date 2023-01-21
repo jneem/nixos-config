@@ -44,7 +44,9 @@
     clang
     ffmpeg-full
     firefox
+    gdb
     graphviz
+    jq
     pavucontrol
     # Is there a way to specify this "near" podman?
     podman-compose
