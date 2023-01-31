@@ -58,6 +58,7 @@
     unzip
     virt-manager
     xorg.xauth
+    xournalpp
     xterm
     pkgs.unstable.zoom-us
     zoxide
