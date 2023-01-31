@@ -47,6 +47,7 @@
     gdb
     graphviz
     jq
+    neovim
     pavucontrol
     # Is there a way to specify this "near" podman?
     podman-compose
@@ -54,10 +55,12 @@
     pulseaudio
     texlive.combined.scheme-full
     tmate
+    unzip
     virt-manager
     xorg.xauth
     xterm
     pkgs.unstable.zoom-us
+    zoxide
   ];
 
   programs.dconf.enable = true;
