@@ -91,6 +91,8 @@
     ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", TAG+="uaccess"
   '';
 
+  services.udisks2.enable = true;
+
   # TODO: split virtualisation into a separate module
   virtualisation.podman = {
     enable = true;
