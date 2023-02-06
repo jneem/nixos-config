@@ -269,7 +269,6 @@
   xdg.systemDirs.data =
     let
       schema = pkgs.gsettings-desktop-schemas;
-      datadir = "${schema}/share/gsettings-schemas/${schema.name}";
     in
     [ "${schema}/share/gsettings-schemas/${schema.name}" ];
 

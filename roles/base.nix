@@ -33,8 +33,8 @@
     helix
     htop
     libfaketime
+    nil
     p7zip
-    rnix-lsp
     xh
     vim
     wget
