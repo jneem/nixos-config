@@ -14,6 +14,7 @@
     stateVersion = "22.05";
     packages = with pkgs; [
       libsecret
+      git-filter-repo
       pari
       ripgrep
       tmux

@@ -61,7 +61,6 @@
     xournalpp
     xterm
     pkgs.unstable.zoom-us
-    zoxide
   ];
 
   programs.dconf.enable = true;
@@ -86,10 +85,17 @@
     };
   };
 
-    # User access for STLink probe
-  services.udev.extraRules = ''
-    ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", TAG+="uaccess"
-  '';
+  # User access for STLink and ESP32C3 probes
+  services.udev.packages = [
+    (pkgs.writeTextFile {
+      name = "embedded-udev-rules";
+      text = ''
+        ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", TAG+="uaccess"
+        ATTRS{idVendor}=="303a", ATTRS{idProduct}=="1001", TAG+="uaccess"
+      '';
+      destination = "/etc/udev/rules.d/69-probe.rules";
+    })
+  ];
 
   services.udisks2.enable = true;
 
