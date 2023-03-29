@@ -21,5 +21,10 @@
     
     # Note: this seems to not get merged! If you leave out "root" it will get left out.
     nix.settings.trusted-users = [ "root" "jneeman" ];
+
+    environment.sessionVariables = {
+      DOCKER_BUILDKIT = "1";
+      COMPOSE_DOCKER_CLI_BUILD = "1";
+    };
   };
 }
