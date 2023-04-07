@@ -20,12 +20,16 @@
         unstable = pkgs-unstable;
       };
 
+      comma-overlay = next: prev: {
+        comma = inputs.comma.packages.${system}.default;
+      };
+
       pkgs = import inputs.nixpkgs {
         localSystem = { inherit system; };
         config = {
           allowUnfree = true;
         };
-        overlays = [ curlossal-overlay unstable-overlay ];
+        overlays = [ curlossal-overlay unstable-overlay comma-overlay ];
       };
     in
     lib.nixosSystem {

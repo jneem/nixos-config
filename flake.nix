@@ -7,6 +7,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     curlossal.url = "github:jneem/curlossal";
+    comma.url = "github:nix-community/comma";
   };
 
   outputs =

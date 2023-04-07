@@ -7,6 +7,8 @@
     inputs.self.nixosRoles.base
     inputs.self.nixosRoles.ssh-server
     inputs.self.nixosRoles.nas
+    inputs.self.nixosRoles.prometheus-exporter
+    inputs.self.nixosRoles.grafana
     inputs.self.nixosUsers.jneeman.cli
   ];
 

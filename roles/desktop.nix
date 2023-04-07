@@ -42,6 +42,7 @@
   environment.systemPackages = with pkgs; [
     brightnessctl
     clang
+    comma
     ffmpeg-full
     firefox
     gdb
