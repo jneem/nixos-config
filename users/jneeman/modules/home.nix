@@ -5,7 +5,7 @@
     ./neovim
   ];
 
-  home = rec {
+  home = {
     username = "jneeman";
     homeDirectory = "/home/jneeman";
     sessionVariables = {
@@ -39,11 +39,19 @@
     enableAliases = true;
   };
 
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   programs.fish = {
     enable = true;
     shellInit = ''
       set fish_greeting
     '';
+    shellAbbrs = {
+      llw = "ll -snew";
+    };
   };
 
   programs.helix = {

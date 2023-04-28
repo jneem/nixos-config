@@ -225,7 +225,8 @@
         { workspace = "20"; output = "HDMI-A-1"; }
       ];
       window.commands = [
-        { criteria = { class = "Slack"; }; command = "move container to workspace 11"; }
+        { criteria = { app_id = "Slack"; }; command = "move container to workspace 11"; }
+        { criteria = { title = "Firefox — Sharing Indicator"; }; command = "kill"; }
       ];
       menu = "${pkgs.bemenu}/bin/bemenu-run | ${pkgs.findutils}/bin/xargs swaymsg exec --";
       terminal = "${pkgs.alacritty}/bin/alacritty";

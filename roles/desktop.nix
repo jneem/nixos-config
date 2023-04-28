@@ -32,6 +32,7 @@
   hardware.pulseaudio.enable = false;
   
   services.hardware.bolt.enable = true;
+  hardware.keyboard.zsa.enable = true;
 
   services.avahi.enable = true;
   services.blueman.enable = true;
@@ -40,6 +41,7 @@
   services.dbus.packages = [ pkgs.gcr ];
 
   environment.systemPackages = with pkgs; [
+    blender
     brightnessctl
     clang
     comma
@@ -52,12 +54,14 @@
     pavucontrol
     # Is there a way to specify this "near" podman?
     podman-compose
+    prusa-slicer
     # For pactl, because pw-cli etc don't have convenient volume-setting stuff yet
     pulseaudio
     texlive.combined.scheme-full
     tmate
     unzip
     virt-manager
+    wally-cli
     xorg.xauth
     xournalpp
     xterm
