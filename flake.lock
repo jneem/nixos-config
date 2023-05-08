@@ -245,6 +245,40 @@
         "type": "github"
       }
     },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1683383741,
+        "narHash": "sha256-rAQSBnFGNKNomUUyVl+7v0tnp45677t4Ovlh9f57k6Q=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "adc7c6f1bbaa73cda26be2323353b63a05b42f61",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-22.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "probe-rs-rules": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1683514337,
+        "narHash": "sha256-yfLefUHTMxrdnpSdmtRDOgcEPj/mN8Joup0Y8qWx85Y=",
+        "owner": "jneem",
+        "repo": "probe-rs-rules",
+        "rev": "f5994b563730d116cfba09cd711eb4dfbef84ba1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jneem",
+        "repo": "probe-rs-rules",
+        "type": "github"
+      }
+    },
     "pypi-deps-db": {
       "flake": false,
       "locked": {
@@ -268,7 +302,8 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "probe-rs-rules": "probe-rs-rules"
       }
     },
     "utils": {

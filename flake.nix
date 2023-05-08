@@ -8,6 +8,7 @@
 
     curlossal.url = "github:jneem/curlossal";
     comma.url = "github:nix-community/comma";
+    probe-rs-rules.url = "github:jneem/probe-rs-rules";
   };
 
   outputs =
