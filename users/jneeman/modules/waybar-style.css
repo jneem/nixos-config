@@ -57,6 +57,7 @@
 @define-color mode #4c566a;
 @define-color workspaces #5e81ac;
 @define-color workspacesfocused #81a1c1;
+@define-color workspacesvisible #81a1c1;
 @define-color network #4c566a;
 @define-color temp #d8dee9;
 @define-color layout #5e81ac;
@@ -176,8 +177,12 @@
 	background: @workspaces;
 }
 
-#workspaces button.focused {
+#workspaces button.active {
 	background: @workspacesfocused;
+}
+
+#workspaces button.visible {
+	background: @workspacesvisible;
 }
 
 #workspaces button.urgent {

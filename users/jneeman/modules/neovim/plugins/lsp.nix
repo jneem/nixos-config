@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-with pkgs.unstable.vimPlugins;
+with pkgs.vimPlugins;
 [
   lsp_extensions-nvim
   lsp_signature-nvim

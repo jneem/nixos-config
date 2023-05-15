@@ -6,7 +6,7 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    plugins = with pkgs.unstable.vimPlugins; [
+    plugins = with pkgs.vimPlugins; [
       {
         plugin = crates-nvim;
         type = "lua";
@@ -41,7 +41,6 @@
       (filter (hasSuffix ".nix"))
       (concatMap (filename: import ./plugins/${filename} { inherit pkgs; }))
     ]);
-    #with pkgs.unstable.vimPlugins; [
     extraConfig = ''
       set number     " line numbers
       set expandtab  " expand tabs to spaces

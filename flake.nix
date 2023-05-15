@@ -1,13 +1,13 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-22.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    comma.url = "github:nix-community/comma";
+    hyprland.url = "github:hyprwm/Hyprland";
 
     curlossal.url = "github:jneem/curlossal";
-    comma.url = "github:nix-community/comma";
     probe-rs-rules.url = "github:jneem/probe-rs-rules";
   };
 

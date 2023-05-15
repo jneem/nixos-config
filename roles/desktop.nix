@@ -1,11 +1,11 @@
-{ config, pkgs, pkgs-unstable, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   hardware.bluetooth.enable = true;
 
   imports = [
     "${inputs.nixpkgs}/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix"
-    inputs.self.nixosModules.sway
+    inputs.self.nixosModules.hyprland
     inputs.probe-rs-rules.nixosModules.default
   ];
   hardware.sane = {
@@ -42,6 +42,8 @@
   services.dbus.packages = [ pkgs.gcr ];
 
   environment.systemPackages = with pkgs; [
+    bemenu
+    swaybg
     blender
     brightnessctl
     clang
@@ -66,7 +68,7 @@
     xorg.xauth
     xournalpp
     xterm
-    pkgs.unstable.zoom-us
+    zoom-us
   ];
 
   programs.dconf.enable = true;

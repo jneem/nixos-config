@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-with pkgs.unstable.vimPlugins;
+with pkgs.vimPlugins;
 [
   cmp-buffer
   cmp-cmdline

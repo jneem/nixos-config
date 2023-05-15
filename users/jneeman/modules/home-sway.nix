@@ -151,7 +151,7 @@
       ];
     };
 
-  programs.mako.enable = true;
+  services.mako.enable = true;
 
   wayland.windowManager.sway = rec {
     config = {

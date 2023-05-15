@@ -1,9 +1,9 @@
 { pkgs, ... }:
 
-with pkgs.unstable.vimPlugins;
+with pkgs.vimPlugins;
 [
   {
-    plugin = nvim-treesitter.withPlugins (_: pkgs.unstable.tree-sitter.allGrammars);
+    plugin = nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars);
     type = "lua";
     config = ''
       require('nvim-treesitter.configs').setup({
