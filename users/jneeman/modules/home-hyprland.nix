@@ -11,8 +11,10 @@
     };
 
     packages = with pkgs; [
+      brightnessctl
       chromium
       darktable
+      firefox-wayland
       gnome.eog
       gimp
       gnome3.adwaita-icon-theme
@@ -22,6 +24,7 @@
       lutris
       mpv
       networkmanagerapplet
+      pulseaudio
       slack
       slurp
       xdg-utils
@@ -141,7 +144,7 @@
   services.swayidle =
     let
       swaylock = "${pkgs.swaylock.outPath}/bin/swaylock";
-      swaymsg = "${pkgs.sway.outPath}/bin/swaymsg";
+      hyprctl = "${pkgs.hyprland.outPath}/bin/hyprctl";
     in
     {
       enable = true;
@@ -158,8 +161,8 @@
         }
         {
           timeout = 300;
-          command = "${swaymsg} 'output * dpms off'";
-          resumeCommand = "${swaymsg} 'output * dpms on'";
+          command = "${hyprctl} dispatch dpms off";
+          resumeCommand = "${hyprctl} dispatch dpms on";
         }
       ];
     };
