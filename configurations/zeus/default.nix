@@ -9,6 +9,6 @@
     inputs.self.nixosRoles.steam
     inputs.self.nixosRoles.ssh-server
     inputs.self.nixosRoles.prometheus-exporter
-    inputs.self.nixosUsers.jneeman.sway
+    inputs.self.nixosUsers.jneeman.hyprland
   ];
 }

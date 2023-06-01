@@ -69,6 +69,13 @@
         file-picker.hidden = false;
         search.smart-case = false;
       };
+      keys = {
+        normal = {
+          C-j = "half_page_down";
+          C-k = "half_page_up";
+          C-d = ":reset-diff-change";
+        };
+      };
     };
     languages = [
       {

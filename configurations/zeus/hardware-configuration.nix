@@ -44,8 +44,6 @@
   # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  # high-resolution display
-  hardware.video.hidpi.enable = lib.mkDefault true;
 
   hardware.opengl = {
     extraPackages = with pkgs; [
@@ -67,7 +65,32 @@
     ACTION=="add", SUBSYSTEM=="video4linux", DRIVERS=="uvcvideo", RUN+="${pkgs.v4l-utils}/bin/v4l2-ctl -d $devnode --set-fmt-video=width=4096,height=2160,pixelformat=MJPG"
   '';
 
-  home-manager.users.jneeman.wayland.windowManager.sway = {
-    config.input."1386:183:Wacom_Intuos3_4x6_Pen".map_to_output = "DP-3";
+  #home-manager.users.jneeman.wayland.windowManager.sway = {
+  #  config.input."1386:183:Wacom_Intuos3_4x6_Pen".map_to_output = "DP-3";
+  #};
+  home-manager.users.jneeman.wayland.windowManager.hyprland = {
+    extraConfig = ''
+      monitor=DP-3, 3840x2160, 1440x0, 1
+      monitor=HDMI-A-1, 2560x1440, 0x0, 1, transform, 3
+
+      workspace=1, monitor:HDMI-A-1
+      workspace=2, monitor:HDMI-A-1
+      workspace=3, monitor:HDMI-A-1
+      workspace=4, monitor:HDMI-A-1
+      workspace=5, monitor:HDMI-A-1
+      workspace=6, monitor:DP-3
+      workspace=7, monitor:DP-3
+      workspace=8, monitor:DP-3
+      workspace=9, monitor:DP-3
+      workspace=0, monitor:DP-3
+
+      windowrule=workspace 1,title:^(.*)(Slack)$
+
+      device {
+        wacom-intuos3-4x6-pen {
+          output=DP-3
+        }
+      }
+    '';
   };
 }
