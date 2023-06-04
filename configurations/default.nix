@@ -18,6 +18,7 @@
         localSystem = { inherit system; };
         config = {
           allowUnfree = true;
+          input-fonts.acceptLicense = true;
         };
         overlays = [ curlossal-overlay comma-overlay ];
       };

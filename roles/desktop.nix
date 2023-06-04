@@ -75,6 +75,7 @@
 
   fonts.fonts = with pkgs; [
     dejavu_fonts
+    input-fonts
     fira-code
     fira-code-symbols
     noto-fonts

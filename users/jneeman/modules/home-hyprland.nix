@@ -49,6 +49,31 @@
 
   programs.alacritty = {
     enable = true;
+    settings = {
+      font = {
+        normal = {
+          family = "Input Mono";
+          style = "Regular";
+        };
+
+        bold = {
+          family = "Input Mono";
+          style = "Bold";
+        };
+
+        italic = {
+          family = "Input Mono";
+          style = "Italic";
+        };
+
+        bold_italic = {
+          family = "Input Mono";
+          style = "Bold Italic";
+        };
+
+        size = 15;
+      };
+    };
   };
 
   programs.firefox = {

@@ -13,6 +13,7 @@
     };
     stateVersion = "22.05";
     packages = with pkgs; [
+      carapace
       libsecret
       git-filter-repo
       pari
@@ -31,6 +32,7 @@
 
   programs.direnv = {
     enable = true;
+    enableNushellIntegration = true;
     nix-direnv.enable = true;
   };
 
@@ -42,6 +44,12 @@
   programs.atuin = {
     enable = true;
     enableFishIntegration = true;
+    enableNushellIntegration = false;
+  };
+
+  programs.nushell = {
+    enable = true;
+    configFile.source = ./config.nu;
   };
 
   programs.fish = {
@@ -98,6 +106,7 @@
 
   programs.starship = {
     enable = true;
+    enableNushellIntegration = true;
     
     settings = {
       gcloud.disabled = true;
@@ -109,6 +118,7 @@
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
+    enableNushellIntegration = true;
   };
 
   xdg.mimeApps = {
