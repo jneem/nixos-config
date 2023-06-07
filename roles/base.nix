@@ -30,6 +30,7 @@
     fd
     file
     git
+    gitui
     helix
     htop
     libfaketime

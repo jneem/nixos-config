@@ -90,6 +90,12 @@
         name = "rust";
         file-types = [ "rs" ];
         indent = { tab-width = 4; unit = "    "; };
+        config = {
+          checkOnSave = {
+            command = "clippy";
+            extraArgs = ["--profile" "rust-analyzer"];
+          };
+        };
       }
       {
         name = "nix";
