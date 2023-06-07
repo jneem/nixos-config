@@ -13,7 +13,6 @@
     };
     stateVersion = "22.05";
     packages = with pkgs; [
-      carapace
       libsecret
       git-filter-repo
       pari
@@ -44,12 +43,18 @@
   programs.atuin = {
     enable = true;
     enableFishIntegration = true;
-    enableNushellIntegration = false;
+    enableNushellIntegration = true;
   };
 
   programs.nushell = {
     enable = true;
     configFile.source = ./config.nu;
+  };
+  home.file = {
+    nu-default-config = {
+      source = ./default_config.nu;
+      target = "/home/jneeman/.config/nushell/default_config.nu";
+    };
   };
 
   programs.fish = {
