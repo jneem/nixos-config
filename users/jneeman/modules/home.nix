@@ -90,24 +90,53 @@
         };
       };
     };
-    languages = [
-      {
-        name = "rust";
-        file-types = [ "rs" ];
-        indent = { tab-width = 4; unit = "    "; };
-        config = {
-          checkOnSave = {
-            command = "clippy";
-            extraArgs = ["--profile" "rust-analyzer"];
+    languages = {
+      language = [
+        {
+          name = "rust";
+          file-types = [ "rs" ];
+          roots = [".lsproot"];
+          indent = { tab-width = 4; unit = "    "; };
+          config = {
+            checkOnSave = {
+              command = "clippy";
+            };
           };
-        };
-      }
-      {
-        name = "nix";
-        file-types = [ "nix" ];
-        indent = { tab-width = 2; unit = "  "; };
-      }
-    ];
+        }
+        {
+          name = "nix";
+          file-types = [ "nix" ];
+          indent = { tab-width = 2; unit = "  "; };
+        }
+        {
+          name = "latex";
+          config.texlab = {
+            auxDirectory = "build";
+            chktex = {
+              onOpenAndSave = true;
+              onEdit = true;
+            };
+            forwardSearch = {
+              executable = "zathura";
+              args = [ "--synctex-forward" "%l:%c:%f" "%p" ];
+            };
+            build = {
+              forwardSearchAfter = true;
+              onSave = true;
+              executable = "latexmk";
+              args = [
+                "-pdf"
+                "-interaction=nonstopmode"
+                "-synctex=1"
+                "-shell-escape"
+                "-output-directory=build"
+                "%f"
+              ];
+            };
+          };
+        }
+      ];
+    };
   };
 
   programs.nix-index = {

@@ -21,7 +21,7 @@
     '';
   };
 
-  time.timeZone = "America/Chicago";
+  time.timeZone = pkgs.lib.mkDefault "America/Chicago";
   i18n.defaultLocale = "en_US.utf8";
 
   environment.systemPackages = with pkgs; [

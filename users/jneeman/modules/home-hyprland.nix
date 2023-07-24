@@ -71,7 +71,7 @@
           style = "Bold Italic";
         };
 
-        size = 15;
+        size = 12;
       };
     };
   };

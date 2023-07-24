@@ -5,7 +5,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     comma.url = "github:nix-community/comma";
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     curlossal.url = "github:jneem/curlossal";
     probe-rs-rules.url = "github:jneem/probe-rs-rules";
