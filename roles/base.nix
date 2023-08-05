@@ -40,6 +40,11 @@
     vim
     wget
   ];
+
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [ fcitx5-unikey fcitx5-gtk ];
+  };
     
   programs.dconf.enable = true;
   programs.fish.enable = true;

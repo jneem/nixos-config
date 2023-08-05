@@ -13,10 +13,13 @@
     };
     stateVersion = "22.05";
     packages = with pkgs; [
+      carapace
+      lazygit
       libsecret
       git-filter-repo
       pari
       ripgrep
+      tealdeer
       tmux
     ];
   };

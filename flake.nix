@@ -1,17 +1,30 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
-    comma.url = "github:nix-community/comma";
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    curlossal.url = "github:jneem/curlossal";
-    probe-rs-rules.url = "github:jneem/probe-rs-rules";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+    };
+
+    comma = {
+      url = "github:nix-community/comma";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    curlossal = {
+      url = "github:jneem/curlossal";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    probe-rs-rules = {
+      url = "github:jneem/probe-rs-rules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
