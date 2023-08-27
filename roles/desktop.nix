@@ -6,7 +6,7 @@
   imports = [
     "${inputs.nixpkgs}/nixos/modules/services/hardware/sane_extra_backends/brscan4.nix"
     inputs.self.nixosModules.hyprland
-    inputs.probe-rs-rules.nixosModules.default
+    inputs.probe-rs-rules.nixosModules.${pkgs.system}.default
   ];
   hardware.sane = {
     brscan4.enable = true;
@@ -69,9 +69,11 @@
     xournalpp
     xterm
     zoom-us
+    inputs.devenv.packages.${system}.default
   ];
 
   programs.dconf.enable = true;
+  programs.gnupg.agent.enable = true;
 
   fonts.fonts = with pkgs; [
     dejavu_fonts

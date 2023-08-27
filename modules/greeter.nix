@@ -32,9 +32,11 @@ in
 
     # TODO: error if both are specified
     services.xserver = lib.mkIf cfg.gdm.enable {
+      enable = true;
       displayManager.gdm = {
         enable = true;
         wayland = true;
+        autoSuspend = false;
       };
       displayManager.defaultSession = "gnome";
       desktopManager.gnome.enable = true;

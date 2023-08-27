@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports = [
@@ -18,5 +18,7 @@
       enable = true;
       user = config.home-manager.users.jneeman;
     };
+
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 }

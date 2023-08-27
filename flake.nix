@@ -11,6 +11,10 @@
       url = "github:NixOS/nixos-hardware";
     };
 
+    devenv = {
+      url = "github:cachix/devenv";
+    };
+
     comma = {
       url = "github:nix-community/comma";
       inputs.nixpkgs.follows = "nixpkgs";
