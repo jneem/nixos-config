@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -72,7 +72,7 @@
 
   programs.helix = {
     enable = true;
-    package = pkgs.helix;
+    package = inputs.helix.packages.${pkgs.system}.default;
     settings = {
       theme = "onedark";
       editor =  {
@@ -100,45 +100,43 @@
           file-types = [ "rs" ];
           roots = [".lsproot"];
           indent = { tab-width = 4; unit = "    "; };
-          config = {
-            checkOnSave = {
-              command = "clippy";
-            };
-          };
         }
         {
           name = "nix";
           file-types = [ "nix" ];
           indent = { tab-width = 2; unit = "  "; };
         }
-        {
-          name = "latex";
-          config.texlab = {
-            auxDirectory = "build";
-            chktex = {
-              onOpenAndSave = true;
-              onEdit = true;
-            };
-            forwardSearch = {
-              executable = "zathura";
-              args = [ "--synctex-forward" "%l:%c:%f" "%p" ];
-            };
-            build = {
-              forwardSearchAfter = true;
-              onSave = true;
-              executable = "latexmk";
-              args = [
-                "-pdf"
-                "-interaction=nonstopmode"
-                "-synctex=1"
-                "-shell-escape"
-                "-output-directory=build"
-                "%f"
-              ];
-            };
-          };
-        }
       ];
+
+      language-server.rust-analyzer.config = {
+        checkOnSave = {
+          command = "clippy";
+        };
+      };
+      language-server.texlab.config.texlab = {
+        auxDirectory = "build";
+        chktex = {
+          onOpenAndSave = true;
+          onEdit = true;
+        };
+        forwardSearch = {
+          executable = "zathura";
+          args = [ "--synctex-forward" "%l:%c:%f" "%p" ];
+        };
+        build = {
+          forwardSearchAfter = true;
+          onSave = true;
+          executable = "latexmk";
+          args = [
+            "-pdf"
+            "-interaction=nonstopmode"
+            "-synctex=1"
+            "-shell-escape"
+            "-output-directory=build"
+            "%f"
+          ];
+        };
+      };
     };
   };
 

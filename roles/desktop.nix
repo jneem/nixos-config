@@ -75,7 +75,7 @@
   programs.dconf.enable = true;
   programs.gnupg.agent.enable = true;
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     dejavu_fonts
     input-fonts
     fira-code

@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 {
+  _module.args.inputs = inputs;
   imports = [ ./home.nix ];
   home = {
     file = {

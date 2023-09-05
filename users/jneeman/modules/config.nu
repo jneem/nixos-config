@@ -6,8 +6,8 @@ let fish_completer = {|spans|
     | from tsv --flexible --no-infer
 }
 
-let-env EDITOR = hx
-let-env config = ($env.config | merge {
+$env.EDITOR = hx
+$env.config = ($env.config | merge {
   show_banner: false
   completions: {
     case_sensitive: false # set to true to enable case-sensitive completions
