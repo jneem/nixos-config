@@ -172,8 +172,8 @@
 
   services.swayidle =
     let
-      swaylock = "${pkgs.swaylock.outPath}/bin/swaylock";
-      hyprctl = "${pkgs.hyprland.outPath}/bin/hyprctl";
+      swaylock = "${pkgs.swaylock-effects.outPath}/bin/swaylock";
+      # hyprctl = "${pkgs.hyprland.outPath}/bin/hyprctl";
     in
     {
       enable = true;
@@ -185,14 +185,15 @@
       ];
       timeouts = [
         {
-          timeout = 310;
-          command = "${swaylock} -f -c 000000";
-        }
-        {
           timeout = 300;
-          command = "${hyprctl} dispatch dpms off";
-          resumeCommand = "${hyprctl} dispatch dpms on";
+          command = "${swaylock} -f -c 000000 --grace 10";
         }
+        # FIXME: track down the hyprctl bug
+        # {
+        #   timeout = 300;
+        #   command = "${hyprctl} dispatch dpms off";
+        #   resumeCommand = "${hyprctl} dispatch dpms on";
+        # }
       ];
     };
 
