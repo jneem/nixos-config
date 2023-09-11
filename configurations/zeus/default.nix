@@ -19,6 +19,8 @@
       user = config.home-manager.users.jneeman;
     };
 
+    home-manager.users.jneeman.programs.helix.package = inputs.helix.packages.${pkgs.system}.default;
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+    networking.firewall.allowedTCPPorts = [ 3000 ]; # for testing the temperature collector
   };
 }
