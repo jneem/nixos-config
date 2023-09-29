@@ -34,6 +34,11 @@
       url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    temperature-collector = {
+      url = "github:jneem/temperature-collector";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

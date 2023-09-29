@@ -32,6 +32,20 @@
     lfs.enable = true;
     userName = "Joe Neeman";
     userEmail = "joeneeman@gmail.com";
+    includes = [
+      {
+        path = "~/tweag/.gitconfig";
+        condition = "gitdir:~/tweag/";
+      }
+    ];
+  };
+
+  home.file.tweag-gitconfig = {
+    target = "tweag/.gitconfig";
+    text = ''
+    [user]
+    email = joe.neeman@tweag.io
+    '';
   };
 
   programs.direnv = {
@@ -82,6 +96,7 @@
     enableNushellIntegration = true;
     
     settings = {
+      aws.disabled = true;
       gcloud.disabled = true;
       package.disabled = true;
       nix_shell.format = "via [❄️ $name]($style) ";

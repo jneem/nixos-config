@@ -1,5 +1,4 @@
-{ inputs, pkgs, pkgs-unstable, ... }:
-
+{ inputs, pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -43,6 +42,7 @@
             login = true;
           };
           # How to add permission to the table temperatures within the database temperatures?
+          # For now: connect to the db, connect to database temperatures and run "GRANT SELECT ON TABLE temperatures TO grafanareader;"
           ensurePermissions = {
             "DATABASE temperatures" = "CONNECT";
           };
@@ -54,6 +54,27 @@
         GRANT ALL PRIVILEGES ON DATABASE temperatures TO temperatures;
       '';
     };
-    networking.firewall.allowedTCPPorts = [ 5432 ];
+    networking.firewall.allowedTCPPorts = [ 5432 3000 ];
+
+    users.users.temperatures = { isSystemUser = true; group = "temperatures"; };
+    users.groups.temperatures = {};
+    
+    systemd.services.temperature-collector =
+      let collector = "${inputs.temperature-collector.packages.x86_64-linux.cross-aarch64}/bin/collector"; in
+    {
+      enable = true;
+      description = "My temperature collector project";
+      after = ["network.target"];
+      wantedBy = ["multi-user.target"];
+      environment = {
+        RUST_LOG = "info";
+      };
+      serviceConfig = {
+        ExecStart = "${collector} host=/run/postgresql";
+        User = "temperatures";
+        Restart = "always";
+        RestartSec = 10;
+      };
+    };
   };
 }
