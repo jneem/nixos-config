@@ -54,7 +54,7 @@
         GRANT ALL PRIVILEGES ON DATABASE temperatures TO temperatures;
       '';
     };
-    networking.firewall.allowedTCPPorts = [ 5432 3000 ];
+    networking.firewall.allowedTCPPorts = [ 5432 3000 8086 ];
 
     users.users.temperatures = { isSystemUser = true; group = "temperatures"; };
     users.groups.temperatures = {};
@@ -75,6 +75,12 @@
         Restart = "always";
         RestartSec = 10;
       };
+    };
+
+    # TODO: figure out secrets management, and add some initial
+    # config here.
+    services.influxdb2 = {
+      enable = true;
     };
   };
 }
