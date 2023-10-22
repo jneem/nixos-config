@@ -48,6 +48,7 @@
     brightnessctl
     clang
     comma
+    devbox
     ffmpeg-full
     firefox
     gdb
@@ -70,6 +71,7 @@
     xterm
     zoom-us
     inputs.devenv.packages.${system}.default
+    (python3.withPackages (ps: [ps.jupyter ps.seaborn]))
   ];
 
   programs.dconf.enable = true;

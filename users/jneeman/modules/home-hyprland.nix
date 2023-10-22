@@ -111,7 +111,7 @@
         layer = "top";
         position = "bottom";
         height = 32;
-        modules-left = [ "wlr/workspaces" ];
+        modules-left = [ "hyprland/workspaces" ];
         modules-right = [ "disk" "memory" "cpu" "network" "pulseaudio" "battery" "backlight" "clock" "tray" "idle_inhibitor" ];
         battery = {
           format = "{icon} {capacity}%";
