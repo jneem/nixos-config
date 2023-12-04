@@ -38,6 +38,9 @@
         condition = "gitdir:~/tweag/";
       }
     ];
+    extraConfig = {
+      push.default = "upstream";
+    };
   };
 
   home.file.tweag-gitconfig = {

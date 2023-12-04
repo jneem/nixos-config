@@ -46,6 +46,8 @@
     swaybg
     blender
     brightnessctl
+    bruno
+    chromium
     clang
     comma
     devbox
@@ -65,6 +67,7 @@
     tmate
     unzip
     virt-manager
+    vscode
     wally-cli
     xorg.xauth
     xournalpp
