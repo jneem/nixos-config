@@ -51,6 +51,17 @@
     '';
   };
 
+  home.file.cargo-config = {
+    target = ".cargo/config.toml";
+    text = ''
+    [profile.rust-analyzer]
+    inherits = "dev"
+
+    [build]
+    rustc-wrapper = "${pkgs.sccache}/bin/sccache"
+    '';
+  };
+
   programs.direnv = {
     enable = true;
     enableNushellIntegration = true;
