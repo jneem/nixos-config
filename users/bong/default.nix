@@ -21,6 +21,7 @@
         gimp
         inkscape
         libreoffice
+        tuxtype
         vlc
       ];
     };
