@@ -199,7 +199,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemdIntegration = true;
+    systemd.enable = true;
     extraConfig = builtins.readFile ./hyprland.conf;
   };
 
