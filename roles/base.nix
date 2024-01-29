@@ -42,6 +42,7 @@
     entr
     fd
     file
+    fzf
     git
     gitui
     helix

@@ -104,6 +104,7 @@
   # User access for STLink and ESP32C3 probes
   hardware.probe-rs.enable = true;
   services.udisks2.enable = true;
+  services.devmon.enable = true;
 
   # TODO: split virtualisation into a separate module
   virtualisation.podman = {

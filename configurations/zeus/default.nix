@@ -20,6 +20,5 @@
     };
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-    networking.firewall.allowedTCPPorts = [ 3000 ]; # for testing the temperature collector
   };
 }
